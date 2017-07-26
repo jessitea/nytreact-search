@@ -1,20 +1,20 @@
 import React from 'react';
 import Search from './Search';
 import helper from '../utils/helper';
-// import Results from './Results';
-// import Saved from './Saved'; 
-// import { Route, Link } from 'react-router-dom';
+
 
 class Main extends React.Component {
 	constructor(){
 			super(); //calls the constructor function of 'React.Component' to help override some of the functionality
 	
+			//where the search results will go after a query is executed
 			this.state = {
 				searchResults: [],
 
 			}
 	}//end of constructor
 
+	//declares a function that is passed as a prop to Search component for use in this component
 	handleSubmit = (event, topic, sYear, eYear) => {
 		event.preventDefault()
 		console.log('Topic: ' + topic);
@@ -22,8 +22,10 @@ class Main extends React.Component {
 		helper.searchNews(topic, sYear, eYear)
 		.then(results => {
 			
+			//declares an array for use to set state in this.state.searchResults
 			var newResults = [];
 
+			//loops through 
 			for (let i = 0; i < results.data.response.docs.length; i++){
 				var title = results.data.response.docs[i].headline.main;
 				var url = results.data.response.docs[i].web_url;
@@ -39,7 +41,7 @@ class Main extends React.Component {
 		console.log(this.state);
 
 		})
-}//end of handleSubmit
+};//end of handleSubmit
 
 	saveSearch = (event, index) => {
 		event.preventDefault();
@@ -51,21 +53,11 @@ class Main extends React.Component {
 		.then(results => {
 			console.log(results)
 		})
-	}
-
-
-
-	componentDidUpdate(prevProps, prevState){
-
-		console.log("Prev state:" + prevState.children);
-
-
-
-	}//end of componentDidUpdate
+	};//end of saveSearch function
 
 
 	render(){
-		return(//has jsx inside
+		return(
 			<div className="container">
 
 				<div className="jumbotron">
@@ -74,23 +66,16 @@ class Main extends React.Component {
 
 				<div className="row">
 					<div className="col-md-12">
+						{/* Displays Search component on main page*/}
 						<Search handleSubmit={this.handleSubmit} searchResults={this.state.searchResults} saveSearch={this.saveSearch}/>
 						
-					</div>
-				</div>
-
-				
-
-
-				<div className="row">
-					<div className="col-md-12">
-						{/*<Results searchResults={this.state.searchResults} saveSearch={this.saveSearch} />*/}
+						
 					</div>
 				</div>
 
 			</div>
 			);
-	}//end of render
+	};//end of render
 
 }
 

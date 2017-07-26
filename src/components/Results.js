@@ -1,9 +1,6 @@
-//this is a functional component, it doesn't have state, it is a regular function that 
-//returns something
-
-//THIS IS WORKING
 import React from 'react';
 
+//functional component, displays search results, passed from Parent/Main component and calls 'saveSearch' function passed from Parent to allow articles to save to database
 const Results = (props) => {
     const articles = props.searchResults;
     const listArticles = articles.map((article, i) =>

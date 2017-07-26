@@ -29,6 +29,14 @@ db.once("open", function(){
 });
 
 //-----INSERT ROUTES -----
+//route to homepage
+app.get("/", function(req,res){
+
+	res.sendFile(__dirname + "/build/static/index.html");
+
+});
+
+//route to save a new article
 app.post("/save", function(req,res){
 
 	// console.log("REQUEST REQ.BODY: " + req.body.title);
@@ -45,6 +53,7 @@ app.post("/save", function(req,res){
 	})
 });
 
+//route to retrieve saved articles and display it
 app.get("/savedArticles", function(req,res){
 
 	Article.find({}).exec(function(err,doc){
@@ -58,6 +67,7 @@ app.get("/savedArticles", function(req,res){
 	})
 });
 
+//route to delete articles
 app.post("/delete", function(req, res){
 
 	console.log("DELETE IN SERVER FILE: " + JSON.stringify(req.body));

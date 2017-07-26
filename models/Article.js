@@ -1,3 +1,5 @@
+//settiing up the schema for the saved articles in the mongoose database
+
 var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;

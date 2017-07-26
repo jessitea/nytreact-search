@@ -6,7 +6,7 @@ import Saved from './Saved';
 const newState = {};
 
 
-
+//class component to perform searches for NYT articles
 class Search extends React.Component{
 		constructor(){
 			super();
@@ -15,20 +15,11 @@ class Search extends React.Component{
 				topic: "",
 				sYear: "",
 				eYear: ""
-			} 
-
-			
+			} 	
 
 		}
 
-
-	componentDidMount(){
-
-
-		
-
-	}
-
+	//sets state of data put in input fields
 	handleChange = (event) => {
 		
 		newState[event.target.id] = event.target.value;
@@ -39,14 +30,12 @@ class Search extends React.Component{
 	}
 
 	
-
+	//creates display of search form on page
 	render(){
 
 		return(
 				<div>
-					
-
-
+				
 					<form>
 						<FormGroup>
 						  
@@ -60,6 +49,8 @@ class Search extends React.Component{
 						  <FormControl type="text" id="eYear" value={this.state.eYear} placeholder="Format: YYYY" onChange={this.handleChange} />
 						  <FormControl.Feedback />
 
+
+						  {/* 'Link' and 'Route' are used from react-router-dom package to link to different components and have them render on a single page */}
 						  <Button type="submit" className="btn btn-default" onClick={(event) => this.props.handleSubmit(event, this.state.topic, this.state.sYear, this.state.eYear)}>
 						  		<Link to="/search">Submit</Link>
 						  </Button>

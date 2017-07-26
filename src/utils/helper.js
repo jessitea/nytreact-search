@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const helper = {
 
+	//executes query to nytimes api 
 	searchNews: function(topic, sYear, eYear){
 		var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
@@ -17,6 +18,7 @@ const helper = {
 
 	},
 
+	//helper function that uses route in server.js page to save article
 	savedArticle: function(chosenArticle){
 
 		// console.log("CHOSEN ARTICLE IN HELPER" + chosenArticle.title);
@@ -25,11 +27,13 @@ const helper = {
 
 	},
 
+	//helper function that uses route in server.js page to load saved article
 	loadSavedArt: function() {
 
 			return axios.get("/savedArticles");
 	},
 
+	//helper function that uses route in server.js page to delete articles
 	deleteArt: function(idPassed) {
 
 			console.log("ID IN HELPER: " + idPassed);
