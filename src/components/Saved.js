@@ -47,9 +47,10 @@ class Saved extends React.Component {
 
 	//function that deletes articles with use of helper function
 	deleteArticle = (event, id, i) => {
-		// console.log("ID FROM DELETED ARTICLE: " + id);
-		event.preventDefault();
 
+		console.log("ID FROM DELETED ARTICLE: " + id);
+		event.preventDefault();
+		
 		//updates state of savedArticle array to delete corresponding article that was deleted from the database
 		var updatedArray = this.state.savedArticles.splice(i, 1);
 		this.setState({savedArticle: updatedArray});
@@ -70,10 +71,10 @@ class Saved extends React.Component {
 		const sArticles = this.state.savedArticles;
     const listSArticles = sArticles.map((article, i) => 
 			(    	
-        <div id={article.id} key={article.title} className="results">
+        <div id={article.id} key={article.title + i} className="results">
 	        <a href={article.url} target="_blank">{article.title}</a>
 
- 					<button type="button" onClick={(event) => this.deleteArticle(event, article.id, {i}) }>Delete</button>
+ 					<button type="button" onClick={(event) => this.deleteArticle(event, article.id, i) }>Delete</button>
         </div>
       )
 		);

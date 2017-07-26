@@ -60,16 +60,10 @@ class Search extends React.Component{
 
 						  <Route exact path="/search" render={()=> <Results searchResults={this.props.searchResults} saveSearch={this.props.saveSearch} />} />
 
-						  	
-
 						  </FormGroup>
 						</form>
 						
-						
-						
 				</div>
-
-
 
 			)
 

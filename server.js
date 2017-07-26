@@ -17,7 +17,18 @@ app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
 app.use(express.static("build"));
 
-mongoose.connect("mongodb://localhost/reactNYT");
+mongoose.Promise = Promise;
+
+var databaseUri= 'mongodb://localhost/reactNYT';
+
+if (process.env.MONGODB_URI) {
+
+  mongoose.connect(process.env.MONGODB_URI);
+}
+else {
+  mongoose.connect(databaseUri);
+}
+
 var db = mongoose.connection;
 
 db.on("error", function(err){
